@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_unit/app/style/TolyIcon.dart';
+import 'package:flutter_unit/app/res/toly_icon.dart';
 import 'package:flutter_unit/components/permanent/code/highlighter_style.dart';
 
 class Cons {
-  static String version = 'V1.1.0';
+  static String version = 'V1.1.1';
 
   static const MENU_INFO = <String>["关于", "帮助", "问题反馈"]; //菜单栏
   static const ICONS_MAP = {
@@ -12,16 +12,6 @@ class Cons {
 //    "喜欢": Icons.favorite, "手册": Icons.class_,
 //    "我的": Icons.account_circle,
   };
-
-  static const rainbow = <int>[
-    0xffff0000,
-    0xffFF7F00,
-    0xffFFFF00,
-    0xff00FF00,
-    0xff00FFFF,
-    0xff0000FF,
-    0xff8B00FF
-  ];
 
   static const tabColors = [
     0xff44D1FD,
@@ -32,6 +22,7 @@ class Cons {
     0xFF00F1F1,
     0xFFDBD83F
   ];
+
   static const tabs = <String>[
     'Stles',
     'Stful',

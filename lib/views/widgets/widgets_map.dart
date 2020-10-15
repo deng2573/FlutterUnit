@@ -7,8 +7,6 @@ import 'exp/proxy_unit.dart';
 import 'exp/other_unit.dart';
 import 'exp/sliver_unit.dart';
 
-
-
 /// create by 张风捷特烈 on 2020-03-04
 /// contact me by email 1981462002@qq.com
 /// 说明:
@@ -25,6 +23,11 @@ class WidgetsMap {
           ContainerTransform(),
           ContainerConstraints()
         ];
+      case "CupertinoSegmentedControl":
+        return [
+          CupertinoSegmentedControlDemo(),
+          CupertinoSegmentedControlColor()
+        ];
       case "Text":
         return [
           CustomText(),
@@ -39,6 +42,21 @@ class WidgetsMap {
           CustomCard(),
           ShapeCard(),
         ];
+      case "ElevatedButton":
+        return [
+          ElevatedButtonDemo(),
+          ElevatedButtonStyleDemo(),
+        ];
+      case "TextButton":
+        return [
+          TextButtonDemo(),
+          TextButtonStyleDemo(),
+        ];
+      case "OutlinedButton":
+        return [
+          OutlinedButtonDemo(),
+          OutlinedButtonStyleDemo(),
+        ];
       case "FlutterLogo":
         return [
           CustomFlutterLogo(),
@@ -47,6 +65,152 @@ class WidgetsMap {
       case "Banner":
         return [
           CustomBanner(),
+        ];
+      case "CupertinoSliverNavigationBar":
+        return [
+          CupertinoSliverNavigationBarDemo(),
+        ];
+      case "CupertinoSliverRefreshControl":
+        return [
+          CupertinoSliverRefreshControlDemo(),
+        ];
+      case "SliverAnimatedList":
+        return [
+          SliverAnimatedListDemo(),
+        ];
+      case "SliverFillRemaining":
+        return [
+          SliverFillRemainingDemo(),
+        ];
+      case "SliverIgnorePointer":
+        return [
+          SliverIgnorePointerDemo(),
+        ];
+      case "Viewport":
+        return [
+          ViewportDemo(),
+        ];
+      case "SliverPrototypeExtentList":
+        return [
+          SliverPrototypeExtentListDemo(),
+        ];
+      case "InputDecorator":
+        return [
+          InputDecoratorDemo(),
+        ];
+      case "WidgetInspector":
+        return [
+          WidgetInspectorDemo(),
+        ];
+      case "PageStorage":
+        return [
+          PageStorageDemo(),
+        ];
+      case "NotificationListener":
+        return [NotificationListenerDemo(), NotificationListenerUpdate()];
+
+      case "Scrollable":
+        return [
+          ScrollableDemo(),
+        ];
+      case "PhysicalModel":
+        return [
+          PhysicalModelDemo(),
+        ];
+      case "Directionality":
+        return [
+          DirectionalityDemo(),
+        ];
+      case "AnimatedTheme":
+        return [
+          AnimatedThemeDemo(),
+        ];
+      case "CupertinoSlidingSegmentedControl":
+        return [
+          CupertinoSlidingSegmentedControlDemo(),
+        ];
+      case "WidgetsApp":
+        return [
+          WidgetsAppDemo(),
+        ];
+
+      case "EditableText":
+        return [
+          EditableTextDemo(),
+        ];
+      case "PhysicalShape":
+        return [
+          PhysicalShapeDemo(),
+        ];
+      case "ListBody":
+        return [
+          ListBodyDemo(),
+        ];
+      case "FractionalTranslation":
+        return [
+          FractionalTranslationDemo(),
+        ];
+      case "MouseRegion":
+        return [
+          MouseRegionDemo(),
+        ];
+      case "TabPageSelector":
+        return [
+          TabPageSelectorDemo(),
+        ];
+      case "CupertinoNavigationBarBackButton":
+        return [
+          CupertinoNavigationBarBackButtonDemo(),
+        ];
+      case "TabPageSelectorIndicator":
+        return [
+          TabPageSelectorIndicatorDemo(),
+        ];
+      case "Title":
+        return [
+          TitleDemo(),
+        ];
+      case "ToggleButtonsTheme":
+        return [
+          ToggleButtonsThemeDemo(),
+        ];
+      case "PerformanceOverlay":
+        return [
+          PerformanceOverlayDemo(),
+        ];
+      case "NavigationToolbar":
+        return [
+          NavigationToolbarDemo(),
+        ];
+      case "CupertinoDialogAction":
+        return [
+          CupertinoDialogActionDemo(),
+        ];
+      case "ButtonBarTheme":
+        return [
+          ButtonBarThemeDemo(),
+        ];
+      case "RawImage":
+        return [
+          RawImageDemo(),
+        ];
+      case "TooltipTheme":
+        return [
+          TooltipThemeDemo(),
+        ];
+      case "CupertinoTextField":
+        return [
+          CupertinoTextFieldDemo(),
+          CupertinoTextFieldStyle(),
+        ];
+      case "MaterialBanner":
+        return [
+          MaterialBannerDemo(),
+          MaterialBannerDemoTwo(),
+        ];
+      case "OrientationBuilder":
+        return [
+          OrientationBuilderDemo(),
         ];
       case "Icon":
         return [
@@ -61,6 +225,12 @@ class WidgetsMap {
         return [
           CustomFadeInImage(),
         ];
+      case "InteractiveViewer":
+        return [
+          InteractiveViewerDemo(),
+          InteractiveViewerDemo2(),
+          InteractiveViewerDemo3(),
+        ];
       case "CircleAvatar":
         return [
           CustomCircleAvatar(),
@@ -70,6 +240,11 @@ class WidgetsMap {
           CustomVisibility(),
           ReplacementVisibility(),
         ];
+      case "RepaintBoundary":
+        return [
+          RepaintBoundaryDemo(),
+          RepaintBoundarySave(),
+        ];
       case "Chip":
         return [
           CustomChip(),
@@ -78,12 +253,26 @@ class WidgetsMap {
         ];
       case "ChoiceChip":
         return [CustomChoiceChip()];
+      case "ListTileTheme":
+        return [ListTileThemeDemo()];
+      case "ValueListenableBuilder":
+        return [ValueListenableBuilderDemo()];
       case "ActionChip":
         return [CustomActionChip()];
+      case "MaterialBannerTheme":
+        return [MaterialBannerThemeDemo()];
+      case "PopupMenuTheme":
+        return [PopupMenuThemeDemo()];
       case "InputChip":
         return [PressInputChip(), SelectInputChip()];
       case "FilterChip":
         return [CustomFilterChip()];
+      case "IntrinsicHeight":
+        return [IntrinsicHeightDemo()];
+      case "IntrinsicWidth":
+        return [IntrinsicWidthDemo()];
+      case "ChipTheme":
+        return [ChipThemeDemo()];
       case "ListTile":
         return [CustomListTile(), SelectListTile(), DenseListTile()];
       case "CheckboxListTile":
@@ -168,7 +357,18 @@ class WidgetsMap {
           ColorToggleButtons(),
           ProToggleButtons(),
         ];
-
+      case "NestedScrollView":
+        return [
+          NestedScrollViewDemo(),
+        ];
+      case "SliverOverlapAbsorber":
+        return [
+          SliverOverlapAbsorberDemo(),
+        ];
+      case "SliverOverlapInjector":
+        return [
+          SliverOverlapInjectorDemo(),
+        ];
       case "Divider":
         return [
           CustomDivider(),
@@ -228,6 +428,14 @@ class WidgetsMap {
       case "Radio":
         return [
           CustomRadio(),
+        ];
+      case "CustomMultiChildLayout":
+        return [
+          CustomMultiChildLayoutDemo(),
+        ];
+      case "LayoutId":
+        return [
+          LayoutIdDemo(),
         ];
       case "CircularProgressIndicator":
         return [
@@ -312,7 +520,7 @@ class WidgetsMap {
         ];
       case "MaterialApp":
         return [
-          CustomMaterialApp(),
+          MaterialAppDemo(),
         ];
       case "ClipOval":
         return [
@@ -656,6 +864,10 @@ class WidgetsMap {
         return [
           CustomLicensePage(),
         ];
+      case "Builder":
+        return [
+          BuilderDemo(),
+        ];
       case "GestureDetector":
         return [
           CustomGestureDetector(),
@@ -670,7 +882,7 @@ class WidgetsMap {
         return [
           CustomTab(),
         ];
-        case "PreferredSize":
+      case "PreferredSize":
         return [
           CustomPreferredSize(),
           AdapterPreferredSize(),
@@ -738,10 +950,6 @@ class WidgetsMap {
           HorizontalListView(),
           BuilderListView(),
           SeparatedListView(),
-        ];
-      case "Builder":
-        return [
-          BuilderDemo(),
         ];
       case "GridView":
         return [
@@ -927,6 +1135,10 @@ class WidgetsMap {
         return [
           DividerThemeDemo(),
         ];
+      case "Navigator":
+        return [
+          NavigatorDemo(),
+        ];
       case "SliderTheme":
         return [
           SliderThemeDemo(),
@@ -949,6 +1161,15 @@ class WidgetsMap {
       case "BackdropFilter":
         return [
           CustomBackdropFilter(),
+        ];
+      case "AnimatedPhysicalModel":
+        return [
+          AnimatedPhysicalModelDemo(),
+        ];
+      case "CustomSingleChildLayout":
+        return [
+          CustomSingleChildLayoutDemo(),
+          OffSetWidgetDemo(),
         ];
     }
   }

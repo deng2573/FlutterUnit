@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_unit/app/convert.dart';
+import 'package:flutter_unit/app/utils/convert.dart';
 import 'package:flutter_unit/app/res/cons.dart';
 import 'package:flutter_unit/app/router.dart';
 import 'package:flutter_unit/blocs/bloc_exp.dart';
@@ -18,7 +18,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin{
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   ScrollController _ctrl;
   double _limitY = 35;
   double _height = kToolbarHeight * 2 - 20;
@@ -93,13 +93,12 @@ class _HomePageState extends State<HomePage>  with AutomaticKeepAliveClientMixin
 
   _switchTab(int index, Color color) {
     if (_ctrl.hasClients) _ctrl.jumpTo(0);
-    BlocProvider.of<HomeBloc>(context)
-        .add(EventTabTap(Convert.toFamily(index)));
+    BlocProvider.of<HomeBloc>(context).add(EventTabTap(Convert.toFamily(index)));
   }
 
   _toDetailPage(WidgetModel model) async {
     BlocProvider.of<DetailBloc>(context).add(FetchWidgetDetail(model));
-    Navigator.pushNamed(context, Router.widget_detail, arguments: model);
+    Navigator.pushNamed(context, UnitRouter.widget_detail, arguments: model);
   }
 
   @override

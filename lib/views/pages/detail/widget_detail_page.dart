@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_star/flutter_star.dart';
 import 'package:flutter_unit/app/res/cons.dart';
-import 'package:flutter_unit/app/style/TolyIcon.dart';
+import 'package:flutter_unit/app/res/toly_icon.dart';
 import 'package:flutter_unit/app/utils/Toast.dart';
 import 'package:flutter_unit/blocs/bloc_exp.dart';
 import 'package:flutter_unit/components/permanent/feedback_widget.dart';
@@ -74,13 +74,11 @@ class _WidgetDetailPageState extends State<WidgetDetailPage> {
     return BlocListener<CollectBloc, CollectState>(
         listener: (ctx, st) {
           bool collected = st.widgets.contains(model);
-          var msg =
-              collected ? "收藏【${model.name}】组件成功!" : "已取消【${model.name}】组件收藏!";
+          var msg = collected ? "收藏【${model.name}】组件成功!" : "已取消【${model.name}】组件收藏!";
           _showToast(ctx, msg, collected);
         },
         child: FeedbackWidget(
-          onPressed: () => BlocProvider.of<CollectBloc>(context)
-              .add(ToggleCollectEvent(id: model.id)),
+          onPressed: () => BlocProvider.of<CollectBloc>(context).add(ToggleCollectEvent(id: model.id)),
           child: BlocBuilder<CollectBloc, CollectState>(
               builder: (_, s) => Padding(
                     padding: const EdgeInsets.only(right: 20.0),
@@ -133,8 +131,7 @@ class _WidgetDetailPageState extends State<WidgetDetailPage> {
     _models.removeLast();
     if (_models.length > 0) {
       setState(() {
-        BlocProvider.of<DetailBloc>(context)
-            .add(FetchWidgetDetail(_models.last));
+        BlocProvider.of<DetailBloc>(context).add(FetchWidgetDetail(_models.last));
       });
       return false;
     } else {
@@ -143,6 +140,7 @@ class _WidgetDetailPageState extends State<WidgetDetailPage> {
   }
 
   Widget _buildDetail(BuildContext context, DetailState state) {
+    print('build---${state.runtimeType}---');
     if (state is DetailWithData) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -191,8 +189,7 @@ class _WidgetDetailPageState extends State<WidgetDetailPage> {
           children: links
               .map((e) => ActionChip(
                     onPressed: () {
-                      BlocProvider.of<DetailBloc>(context)
-                          .add(FetchWidgetDetail(e));
+                      BlocProvider.of<DetailBloc>(context).add(FetchWidgetDetail(e));
                       setState(() {
                         _models.add(e);
                       });
@@ -268,7 +265,7 @@ class WidgetDetailTitle extends StatelessWidget {
                   child: ClipRRect(
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                       child: model.image == null
-                          ? Image.asset('assets/images/caver.jpeg')
+                          ? Image.asset('assets/images/caver.webp')
                           : Image(image: model.image))),
             ),
           ),

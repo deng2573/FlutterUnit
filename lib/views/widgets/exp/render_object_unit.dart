@@ -21,12 +21,20 @@ export '../MultiChildRenderObjectWidget/Wrap/node5_verticalDirection.dart';
 export '../MultiChildRenderObjectWidget/Column/node1_base.dart';
 export '../MultiChildRenderObjectWidget/IndexedStack/node1_base.dart';
 export '../MultiChildRenderObjectWidget/Row/node1_base.dart';
-
+export '../MultiChildRenderObjectWidget/CustomMultiChildLayout/node1_base.dart';
+export '../MultiChildRenderObjectWidget/Viewport/node1_base.dart';
+export '../MultiChildRenderObjectWidget/ListBody/node1_base.dart';
 
 export '../SingleChildRenderObjectWidget/Align/node1_base.dart';
 export '../SingleChildRenderObjectWidget/Align/node2_other.dart';
+export '../SingleChildRenderObjectWidget/CustomSingleChildLayout/node1_base.dart';
+export '../SingleChildRenderObjectWidget/CustomSingleChildLayout/node2_offset.dart';
+export '../SingleChildRenderObjectWidget/RepaintBoundary/node1_base.dart';
+export '../SingleChildRenderObjectWidget/RepaintBoundary/node2_save.dart';
 
 export '../SingleChildRenderObjectWidget/ConstrainedBox/node1_base.dart';
+export '../SingleChildRenderObjectWidget/PhysicalModel/node1_base.dart';
+export '../SingleChildRenderObjectWidget/FractionalTranslation/node1_base.dart';
 export '../SingleChildRenderObjectWidget/ColorFiltered/node1_base.dart';
 export '../SingleChildRenderObjectWidget/Baseline/node1_base.dart';
 export '../SingleChildRenderObjectWidget/DecoratedBox/node1_base.dart';
@@ -75,3 +83,6 @@ export '../SingleChildRenderObjectWidget/LayoutBuilder/node2_fit.dart';
 export '../SingleChildRenderObjectWidget/LayoutBuilder/node3_expend.dart';
 export '../SingleChildRenderObjectWidget/ShaderMask/node1_radial.dart';
 export '../SingleChildRenderObjectWidget/ShaderMask/node2_linear.dart';
+export '../SingleChildRenderObjectWidget/IntrinsicHeight/node1_base.dart';
+export '../SingleChildRenderObjectWidget/IntrinsicWidth/node1_base.dart';
+export '../SingleChildRenderObjectWidget/PhysicalShape/node1_base.dart';

@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_unit/app/router.dart';
-import 'package:flutter_unit/blocs/category/category_bloc.dart';
-import 'package:flutter_unit/blocs/category/category_event.dart';
-import 'package:flutter_unit/blocs/category/category_state.dart';
-import 'package:flutter_unit/blocs/category_widget/category_widget_bloc.dart';
-import 'package:flutter_unit/blocs/category_widget/category_widget_event.dart';
+import 'package:flutter_unit/blocs/bloc_exp.dart';
 import 'package:flutter_unit/components/permanent/circle.dart';
 
 import 'package:flutter_unit/model/category_model.dart';
@@ -15,6 +11,7 @@ import 'package:flutter_unit/views/items/category_list_item.dart';
 import 'edit_category_panel.dart';
 
 class CategoryPage extends StatelessWidget {
+
   final gridDelegate = const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
     mainAxisSpacing: 10,
@@ -24,25 +21,37 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryBloc, CategoryState>(builder: (_, state) {
+    return BlocBuilder<CategoryBloc, CategoryState>(builder: (ctx, state) {
       if (state is CategoryLoadedState) {
-        return GridView.builder(
-          padding: EdgeInsets.all(10),
-          itemCount: state.categories.length,
-          itemBuilder: (_, index) => Container(
-            child: GestureDetector(
-                onTap: () => _toDetailPage(context, state.categories[index]),
-                child: CategoryListItem(
-                  data: state.categories[index],
-                  onDeleteItemClick: (model) => _deleteCollect(context, model),
-                  onEditItemClick: (model) => _editCollect(context, model),
-                )),
-          ),
-          gridDelegate: gridDelegate,
+        return CustomScrollView(
+          slivers: <Widget>[
+            SliverOverlapInjector(
+              handle: NestedScrollView.sliverOverlapAbsorberHandleFor(ctx),
+            ),
+            _buildContent(context, state)],
         );
       }
       return Container();
     });
+  }
+
+  _buildContent(BuildContext context, CategoryLoadedState state) {
+    return SliverPadding(
+      padding: EdgeInsets.only(top:10, left: 10, right: 10, bottom: 40),
+      sliver: SliverGrid(
+          delegate: SliverChildBuilderDelegate(
+                  (_, index) => Container(
+                child: GestureDetector(
+                    onTap: () => _toDetailPage(context, state.categories[index]),
+                    child:  CategoryListItem(
+                      data: state.categories[index],
+                      onDeleteItemClick: (model) => _deleteCollect(context, model),
+                      onEditItemClick: (model) => _editCollect(context, model),
+                    )),
+              ),
+              childCount: state.categories.length),
+          gridDelegate: gridDelegate),
+    );
   }
 
   _deleteCollect(BuildContext context, CategoryModel model) {
@@ -109,6 +118,8 @@ class CategoryPage extends StatelessWidget {
   _toDetailPage(BuildContext context, CategoryModel model) {
     BlocProvider.of<CategoryWidgetBloc>(context)
         .add(EventLoadCategoryWidget(model.id));
-    Navigator.pushNamed(context, Router.category_show, arguments: model);
+    Navigator.pushNamed(context, UnitRouter.category_show, arguments: model);
   }
+
+
 }

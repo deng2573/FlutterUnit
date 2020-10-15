@@ -4,31 +4,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_unit/app/router.dart';
 import 'package:flutter_unit/blocs/bloc_exp.dart';
 import 'package:flutter_unit/components/permanent/circle_image.dart';
-import 'package:flutter_unit/model/widget_model.dart';
-import 'package:flutter_unit/views/items/collect_widget_list_item.dart';
+import 'package:flutter_unit/components/permanent/feedback_widget.dart';
 
 import 'category_page.dart';
+import 'default_collect_page.dart';
 
 class CollectPage extends StatefulWidget {
   @override
   _CollectPageState createState() => _CollectPageState();
 }
 
-class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClientMixin{
-  final gridDelegate = const SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: 2,
-    mainAxisSpacing: 10,
-    crossAxisSpacing: 10,
-    childAspectRatio: 1 / 0.5,
-  );
+class _CollectPageState extends State<CollectPage>
+    with AutomaticKeepAliveClientMixin {
 
-  final _tabs = ['收藏集录','默认收藏', ];
+  final _tabs = [
+    '收藏集录',
+    '默认收藏',
+  ];
 
   @override
   Widget build(BuildContext context) {
-   var _topContext = context;
+    super.build(context);
+    var _topContext = context;
     return Scaffold(
-        backgroundColor: BlocProvider.of<HomeBloc>(context).state.homeColor.withAlpha(11),
+        backgroundColor:
+            BlocProvider.of<HomeBloc>(context).state.homeColor.withAlpha(11),
         body: DefaultTabController(
           length: _tabs.length, // This is the number of tabs.
           child: NestedScrollView(
@@ -38,22 +38,14 @@ class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClient
                 SliverOverlapAbsorber(
                     handle: NestedScrollView.sliverOverlapAbsorberHandleFor(
                         context),
-                    child: _buildAppBar(_topContext, innerBoxIsScrolled)),
+                    sliver: _buildAppBar(_topContext, innerBoxIsScrolled)),
               ];
             },
-            body: Container(
-              padding: EdgeInsets.only(top: 150-30.0-10),
-              child: TabBarView(
-                children: <Widget>[
-                  CategoryPage(),
-                  BlocBuilder<CollectBloc, CollectState>(
-                      builder: (_, state) {
-                        return CustomScrollView(
-                            slivers: <Widget>[_buildContent(context, state)],
-                          );
-                      }),
-                ],
-              ),
+            body:  TabBarView(
+              children: <Widget>[
+                CategoryPage(),
+                DefaultCollectPage(),
+              ],
             ),
           ),
         ));
@@ -63,15 +55,21 @@ class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClient
     return SliverAppBar(
       leading: Container(
           margin: EdgeInsets.all(10),
-          child: CircleImage(
-            image: AssetImage('assets/images/icon_head.png'),
-            borderSize: 1.5,
+          child: FeedbackWidget(
+            onPressed: (){
+              Navigator.of(context).pushNamed(UnitRouter.login);
+            },
+            child: CircleImage(
+              image: AssetImage('assets/images/icon_head.webp'),
+              borderSize: 1.5,
+            ),
           )),
       backgroundColor: BlocProvider.of<HomeBloc>(context).state.homeColor,
       actions: <Widget>[_buildAddActionBuilder(context)],
       title: Text(
         '收藏集 CollectUnit',
-        style: TextStyle(color: Colors.white, //标题
+        style: TextStyle(
+            color: Colors.white, //标题
             fontSize: 18,
             shadows: [
               Shadow(color: Colors.blue, offset: Offset(1, 1), blurRadius: 2)
@@ -82,7 +80,7 @@ class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClient
       flexibleSpace: FlexibleSpaceBar(
         collapseMode: CollapseMode.parallax, //视差效果
         background: Image.asset(
-          "assets/images/caver.jpeg",
+          "assets/images/caver.webp",
           fit: BoxFit.cover,
         ),
       ),
@@ -91,7 +89,7 @@ class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClient
         preferredSize: Size.fromHeight(30),
         child: TabBar(
           indicatorColor: Colors.transparent,
-            unselectedLabelColor : Colors.white,
+          unselectedLabelColor: Colors.white,
           labelColor: Colors.black,
           labelStyle: TextStyle(fontSize: 16, shadows: [
             Shadow(
@@ -99,31 +97,14 @@ class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClient
                 offset: Offset(1, 1),
                 blurRadius: 10)
           ]),
-          tabs: _tabs.map((String name) => Container(
-            margin: EdgeInsets.only(bottom: 5),
-              alignment:Alignment.center,child: Text(name))).toList(),
+          tabs: _tabs
+              .map((String name) => Container(
+                  margin: EdgeInsets.only(bottom: 5),
+                  alignment: Alignment.center,
+                  child: Text(name)))
+              .toList(),
         ),
       ),
-    );
-  }
-
-  Widget _buildContent(BuildContext context, CollectState state) {
-    return SliverPadding(
-      padding: EdgeInsets.only(top:10, left: 10, right: 10, bottom: 40),
-      sliver: SliverGrid(
-          delegate: SliverChildBuilderDelegate(
-              (_, index) => Container(
-                    child: GestureDetector(
-                        onTap: () =>
-                            _toDetailPage(context, state.widgets[index]),
-                        child: CollectWidgetListItem(
-                          data: state.widgets[index],
-                          onDelectItemClick: (model) =>
-                              _deleteCollect(context, model),
-                        )),
-                  ),
-              childCount: state.widgets.length),
-          gridDelegate: gridDelegate),
     );
   }
 
@@ -134,16 +115,6 @@ class _CollectPageState extends State<CollectPage> with AutomaticKeepAliveClient
       ),
       onPressed: () => Scaffold.of(context).openEndDrawer());
 
-  _deleteCollect(BuildContext context, WidgetModel model) =>
-      BlocProvider.of<CollectBloc>(context)
-          .add(ToggleCollectEvent(id: model.id));
-
-  _toDetailPage(BuildContext context, WidgetModel model) {
-    BlocProvider.of<DetailBloc>(context).add(FetchWidgetDetail(model));
-    Navigator.pushNamed(context, Router.widget_detail, arguments: model);
-  }
-
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
 }
